@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-centralizado">
+
+    <div class="card">
+        <h2>Novo Produto</h2>
+        <form method="POST" enctype="multipart/form-data">
+            
+            <label>Foto do Produto</label>
+            <input type="file" name="imagem" accept="image/*">
+
+            <label>Nome</label>
+            <input type="text" name="nome" required placeholder="Ex: Batata Maluca">
+
+            <label>Descrição</label>
+            <textarea name="descricao" placeholder="Ingredientes..."></textarea>
+
+            <label>Preço (R$)</label>
+            <input type="text" name="preco" required placeholder="0.00">
+
+            <label>Categoria</label>
+            <select name="categoria" required>
+                <option value="" disabled selected>Selecione uma categoria...</option>
+                <option value="Tradicionais">Tradicionais</option>
+                <option value="Artesanais">Artesanais</option>
+                <option value="Hot Dog">Hot Dog</option>
+                <option value="Combos">Combos</option>
+                <option value="Porções">Porções</option>
+                <option value="Batatas">Batatas</option>
+                <option value="Bebidas">Bebidas</option>
+                <option value="Adicionais">Adicionais</option>
+            </select>
+            <label>Preço Unitário (R$)</label>
+            <input type="text" name="preco" required placeholder="0.00">
+
+            <label>Preço do Combo (Opcional)</label>
+            <input type="text" name="preco_combo" placeholder="Ex: 25.00 (Deixe vazio se não tiver)">
+
+            <button type="submit">Salvar Produto</button>
+        </form>
+        <a href="/admin" class="voltar">← Voltar ao Painel</a>
+    </div>
+
+</body>
+</html>

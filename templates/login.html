@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - Casa dos Lanches</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* tela cheia */
+        }
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+        }
+        .login-btn {
+            background-color: #6A0DAD;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .login-btn:hover { background-color: #580b94; }
+        .erro { color: red; margin-bottom: 15px; font-size: 14px; }
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box; /* garante que o padding não estoure a caixa */
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" width="80" style="margin-bottom: 20px;">
+        <h2 style="color: #6A0DAD; margin-bottom: 20px;">Área do Dono</h2>
+        
+        {% if erro %}
+            <p class="erro">{{ erro }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input type="password" name="senha" placeholder="Digite a senha..." required autofocus>
+            <button type="submit" class="login-btn">Entrar</button>
+        </form>
+        
+        <br>
+        <a href="/" style="text-decoration: none; color: #888; font-size: 12px;">← Voltar ao Cardápio</a>
+    </div>
+
+</body>
+</html>

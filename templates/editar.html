@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-centralizado">
+
+    <div class="card">
+        <h2>Editar: {{ produto.nome }}</h2>
+        <form method="POST" enctype="multipart/form-data">
+            
+            {% if produto.imagem %}
+            <div style="text-align: center; margin-bottom: 10px;">
+                <img src="{{ url_for('static', filename='uploads/' + produto.imagem) }}" style="height: 80px; border-radius: 8px;">
+                <p style="font-size: 12px; color: #888;">Foto atual</p>
+            </div>
+            {% endif %}
+
+            <label>Alterar Foto (Opcional)</label>
+            <input type="file" name="imagem" accept="image/*">
+            
+            <label>Nome</label>
+            <input type="text" name="nome" value="{{ produto.nome }}" required>
+
+            <label>Descrição</label>
+            <textarea name="descricao">{{ produto.descricao }}</textarea>
+
+            <label>Preço Unitário (R$)</label>
+            <input type="text" name="preco" value="{{ produto.preco }}" required>
+
+            <label>Preço do Combo (Opcional)</label>
+            <input type="text" name="preco_combo" value="{{ produto.preco_combo or '' }}" placeholder="Ex: 25.00">
+
+            <label>Descrição do Combo (O que vem?)</label>
+            <input type="text" name="descricao_combo" value="{{ produto.descricao_combo or '' }}" placeholder="Ex: Batata + Guaravita">
+
+            <label>Categoria</label>
+            <select name="categoria" required>
+                <option value="Hambúrguer Artesanal" {% if produto.categoria == 'Hambúrguer Artesanal' %}selected{% endif %}>Hambúrguer Artesanal</option>
+                
+                <option value="Hot Dog" {% if produto.categoria == 'Hot Dog' %}selected{% endif %}>Hot Dog</option>
+                <option value="Combos" {% if produto.categoria == 'Combos' %}selected{% endif %}>Combos</option>
+                <option value="Porções" {% if produto.categoria == 'Porções' %}selected{% endif %}>Porções</option>
+                <option value="Batatas" {% if produto.categoria == 'Batatas' %}selected{% endif %}>Batatas</option>
+                <option value="Bebidas" {% if produto.categoria == 'Bebidas' %}selected{% endif %}>Bebidas</option>
+                <option value="Adicionais" {% if produto.categoria == 'Adicionais' %}selected{% endif %}>Adicionais</option>
+            </select>
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+        <a href="/admin" class="voltar">← Cancelar</a>
+    </div>
+
+</body>
+</html>

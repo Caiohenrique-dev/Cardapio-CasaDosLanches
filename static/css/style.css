@@ -1,0 +1,429 @@
+
+:root {
+    /* cores do sistema */
+    --cor-roxo: #6A0DAD;
+    --cor-roxo-escuro: #4B0082;
+    --cor-fundo: #F8F8FF;
+    --cor-texto: #333333;
+    --cor-cinza-claro: #ddd;
+    --cor-verde: #28a745;
+    --cor-vermelho: #dc3545;
+    --cor-branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* topo do site */
+.header {
+    background-color: var(--cor-roxo);
+    color: var(--cor-branco);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* logo do cardápio */
+.logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--cor-branco);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.header-text h1,
+.header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--cor-branco);
+}
+
+.header-text p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* parte dos produtos */
+.container {
+    padding: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.categoria {
+    color: var(--cor-roxo);
+    border-bottom: 2px solid var(--cor-roxo);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* cada produto do cardápio */
+.item {
+    background: var(--cor-branco);
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.item:active {
+    transform: scale(0.98);
+}
+
+.info {
+    flex: 1;
+    padding-right: 15px;
+}
+
+.info h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #222;
+}
+
+.info p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* valor do produto */
+.preco {
+    font-weight: 800;
+    color: var(--cor-roxo);
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+/* final da página */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 20px;
+    background: #e9e9efff;
+    color: #888;
+    font-size: 12px;
+    border-top: 1px solid var(--cor-cinza-claro);
+}
+
+.footer strong {
+    color: var(--cor-roxo);
+}
+
+/* tabela do admin */
+.table-responsive {
+    overflow-x: auto;
+    padding: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--cor-branco);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 600px;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-cinza-claro);
+}
+
+th {
+    background-color: var(--cor-roxo);
+    color: var(--cor-branco);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* botões do painel */
+.btn {
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+
+.btn-add {
+    background-color: var(--cor-branco);
+    color: var(--cor-roxo);
+}
+
+.btn-view {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--cor-branco);
+    margin-left: 10px;
+}
+
+/* disponibilidade dos produtos */
+.link-status {
+    text-decoration: none;
+}
+
+.status-on {
+    color: var(--cor-verde);
+    background: #e6f9e9;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-off {
+    color: var(--cor-vermelho);
+    background: #f9e6e6;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.acao-del {
+    color: var(--cor-vermelho);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.descricao-pequena {
+    color: #777;
+    font-size: 12px;
+}
+
+/* tela de login e cadastro de produtos */
+.body-centralizado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--cor-fundo);
+}
+
+.card {
+    background: var(--cor-branco);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--cor-roxo);
+    text-align: center;
+    border-bottom: 2px solid var(--cor-fundo);
+    padding-bottom: 15px;
+}
+
+/* campos dos formulários */
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid var(--cor-cinza-claro);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    background-color: #fafafa;
+}
+
+form textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+/* botão de salvar */
+form button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    background-color: var(--cor-roxo);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--cor-roxo-escuro);
+}
+
+.voltar {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* etiqueta dos adicionais */
+.adicionais-tag {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    color: #856404;
+    background-color: #fff3cd;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ffeeba;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+/* ajustes para celular */
+@media (max-width: 480px) {
+
+    /* organiza o topo no celular */
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    /* deixa os produtos um embaixo do outro */
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 15px;
+    }
+
+    .info {
+        width: 100%;
+        margin-bottom: 8px;
+        padding-right: 0;
+    }
+
+    .adicionais-tag {
+        display: block;
+        width: fit-content;
+    }
+
+    /* separa os preços do produto e do combo */
+    .area-preco {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-top: 1px dotted #e0e0e0;
+        padding-top: 10px;
+        margin-top: 5px;
+    }
+
+    /* preço da unidade */
+    .preco-individual {
+        font-size: 18px;
+        text-align: left;
+        line-height: 1;
+    }
+
+    .preco-individual::after {
+        content: " (unid.)";
+        font-size: 10px;
+        color: #999;
+        font-weight: normal;
+        display: block;
+        margin-top: 2px;
+    }
+
+    /* preço e informações do combo */
+    .preco-combo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        background: none;
+        border: none;
+        padding: 0;
+        max-width: 65%;
+        font-size: 19px;
+        color: #28a745;
+        font-weight: bold;
+        margin-top: 2px;
+    }
+
+    .label-combo {
+        font-size: 10px;
+        font-weight: 900;
+        color: #28a745;
+        text-transform: uppercase;
+        margin-bottom: 1px;
+    }
+
+    .desc-combo {
+        display: block;
+        font-size: 10px;
+        color: #555;
+        margin-bottom: 0;
+        line-height: 1.1;
+    }
+
+    .preco-combo br {
+        display: none;
+    }
+}

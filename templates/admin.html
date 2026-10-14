@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Fluxo Systems</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Painel Administrativo</h1>
+        <div>
+            <a href="/admin/adicionar" class="btn btn-add">+ Novo Produto</a>
+            
+            <a href="/" target="_blank" class="btn btn-view">Ver Cardápio</a>
+
+            <a href="/logout" class="btn" style="background-color: #dc3545; color: white; margin-left: 10px;">Sair</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>
+                        {% if produto.imagem %}
+                            <img src="{{ url_for('static', filename='uploads/' + produto.imagem) }}" width="50" height="50" style="border-radius: 5px; object-fit: cover;">
+                        {% else %}
+                            <span style="color:#ccc; font-size: 12px;">Sem foto</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <strong>{{ produto.nome }}</strong><br>
+                        <small class="descricao-pequena">{{ produto.categoria }}</small>
+                    </td>
+                    <td>
+                        R$ {{ "%.2f"|format(produto.preco) }}
+                        
+                        {% if produto.preco_combo %}
+                        <br><span style="font-size: 10px; color: #28a745;">+ Combo: R$ {{ "%.2f"|format(produto.preco_combo) }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/admin/status/{{ produto.id }}" class="link-status">
+                            <span class="{{ 'status-on' if produto.disponivel else 'status-off' }}">
+                                {{ 'Ativo' if produto.disponivel else 'Off' }}
+                            </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/admin/editar/{{ produto.id }}" style="color: #007bff; font-weight: bold; text-decoration: none; margin-right: 10px;">Editar</a>
+                        
+                        <a href="/admin/excluir/{{ produto.id }}" class="acao-del" onclick="return confirm('Tem certeza que deseja apagar este item?')">Excluir</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="tabela-vazia">Nenhum produto cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

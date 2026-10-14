@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa dos Lanches</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+<style>
+    /* preços dos produtos e combos */
+    .area-preco {
+        text-align: right;
+        min-width: 100px;
+    }
+
+    .preco-individual {
+        font-weight: 800;
+        color: #6A0DAD;
+        font-size: 18px;
+    }
+
+    .preco-combo {
+        font-size: 14px;
+        color: #28a745;
+        font-weight: bold;
+        margin-top: 4px;
+        line-height: 1.2;
+    }
+
+    .label-combo {
+        font-size: 11px;
+        color: #666;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+    .desc-combo {
+        font-size: 10px;
+        color: #555;
+        font-weight: normal;
+        display: block;
+    }
+
+    /* botão do whatsapp */
+    .btn-whatsapp-flutuante {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s;
+    }
+
+    .btn-whatsapp-flutuante:hover {
+        transform: scale(1.05);
+        background-color: #128C7E;
+    }
+
+    /* tamanho do ícone */
+    .btn-whatsapp-flutuante i {
+        font-size: 24px;
+    }
+
+    /* ajustes para celular */
+    @media (max-width: 600px) {
+        .btn-whatsapp-flutuante {
+            padding: 10px 15px;
+            font-size: 14px;
+            bottom: 15px;
+            right: 15px;
+        }
+
+        .btn-whatsapp-flutuante i {
+            font-size: 20px;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo-img">
+        <div class="header-text">
+            <h1>Casa dos Lanches</h1>
+            <p>Peça e saboreie!</p>
+        </div>
+    </div>
+
+    <div class="container">
+        {% for nome_categoria, itens in categorias.items() %}
+            <h2 class="categoria">{{ nome_categoria }}</h2>
+            {% for item in itens %}
+            <div class="item">
+                {% if item.imagem %}
+                <img src="{{ url_for('static', filename='uploads/' + item.imagem) }}" 
+                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
+                {% endif %}
+                
+                <div class="info">
+                    <h3>{{ item.nome }}</h3>
+                    <p>{{ item.descricao }}</p>
+
+                    {% if nome_categoria == 'Hot Dog' %}
+                    <div class="adicionais-tag">
+                        + Adicionais: Bacon R$3 • Cheddar R$2 • Catupiry R$2
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="area-preco">
+                    <div class="preco-individual">
+                        R$ {{ "%.2f"|format(item.preco) }}
+                    </div>
+                    
+                    {% if item.preco_combo and item.preco_combo > 0 %}
+                    <div class="preco-combo">
+                        <span class="label-combo">COMBO</span>
+                        {% if item.descricao_combo %}
+                            <span class="desc-combo">({{ item.descricao_combo }})</span>
+                        {% endif %}
+                        R$ {{ "%.2f"|format(item.preco_combo) }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; margin-top: 50px;">Cardápio vazio.</p>
+        {% endfor %}
+    </div>
+
+    <a href="https://wa.me/5524981114649?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%21" 
+       class="btn-whatsapp-flutuante" 
+       target="_blank">
+        
+        <i class="fab fa-whatsapp"></i>
+        
+        Fazer Pedido
+    </a>
+
+    <div class="footer">
+        <p>Faça seu pedido: 
+            <a href="https://wa.me/5524981114649" style="color: #25D366; text-decoration: none; font-weight: bold;">
+                <i class="fab fa-whatsapp"></i> (24) 98111-4649
+            </a>
+        <p>Desenvolvido por: <strong>Fluxo Systems</strong></p>
+        <p>© 2026 Casa dos Lanches.</p>
+    </div>
+
+</body>
+</html>

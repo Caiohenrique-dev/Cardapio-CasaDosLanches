@@ -1,0 +1,18 @@
+@"
+# banco de dados
+instance/
+*.db
+*.sqlite3
+
+# cache do python
+__pycache__/
+*.pyc
+
+# ambiente
+.env
+.venv/
+venv/
+
+# arquivos do editor
+.vscode/
+"@ | Set-Content -Encoding utf8 .gitignore
